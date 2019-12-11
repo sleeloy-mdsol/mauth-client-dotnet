@@ -10,7 +10,7 @@ before_script:
   - export PATH=$PATH:/home/travis/.dotnet/tools
 script:
   - dotnet restore --source "https://api.nuget.org/v3/index.json" --source $MEDIDATA_NUGET_SOURCE --verbosity m
-  - dotnet build tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj --verbosity m --output $TRAVIS_BUILD_DIR/build-output
+  - dotnet build /p:DeterministicSourcePaths=false tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj --verbosity m --output $TRAVIS_BUILD_DIR/build-output
   - coverlet $TRAVIS_BUILD_DIR/build-output/Medidata.MAuth.Tests.dll --target "dotnet" --targetargs "test --no-build" --format opencover
   - dotnet-sonarscanner begin /k:"mauth-client-dotnet" /d:sonar.login="50aac6d2540b631cc3118df45945556deca19350" /d:sonar.host.url="http://sonarqube-alb-561878045.us-east-1.elb.amazonaws.com/" /d:sonar.cs.opencover.reportsPaths="coverage.opencover.xml"
   - dotnet build
