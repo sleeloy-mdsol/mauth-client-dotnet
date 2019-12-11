@@ -1,5 +1,5 @@
 language: csharp
-solution:Medidata.MAuth.sln 
+solution: Medidata.MAuth.sln 
 mono: none
 dist: xenial
 dotnet: 3.0.100
