@@ -9,7 +9,7 @@ before_script:
   - export PATH=$PATH:/home/travis/.dotnet/tools
 script:
   - dotnet restore --source "https://api.nuget.org/v3/index.json" --source $MEDIDATA_NUGET_SOURCE --verbosity m
-  - dotnet add package coverlet.msbuild
+  - dotnet add tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj package coverlet.msbuild
   - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj --verbosity m
   - dotnet-sonarscanner begin /k:"mauth-client-dotnet" /d:sonar.login="50aac6d2540b631cc3118df45945556deca19350" /d:sonar.host.url="http://sonarqube-alb-561878045.us-east-1.elb.amazonaws.com/" /d:sonar.cs.opencover.reportsPaths="coverage.opencover.xml"
   - dotnet build
