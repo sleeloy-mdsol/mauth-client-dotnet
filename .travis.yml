@@ -11,6 +11,7 @@ before_script:
 script:
   - dotnet restore --source "https://api.nuget.org/v3/index.json" --source $MEDIDATA_NUGET_SOURCE --verbosity m
   - ls
+  - pwd
   - dotnet build tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj --verbosity m --output ./build-output
   - coverlet build-output/Medidata.MAuth.Tests.dll --target "dotnet" --targetargs "test" --format opencover
   - dotnet-sonarscanner begin /k:"mauth-client-dotnet" /d:sonar.login="50aac6d2540b631cc3118df45945556deca19350" /d:sonar.host.url="http://sonarqube-alb-561878045.us-east-1.elb.amazonaws.com/" /d:sonar.cs.opencover.reportsPaths="coverage.opencover.xml"
