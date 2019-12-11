@@ -5,9 +5,8 @@
         "app_uuid": "5ff4257e-9c16-11e0-b048-0026bbfffe5e",
         "time": 1309891855,
         "verb": "PUT",
-        "request_url": "http://localhost:29999/v1/pictures",
-        "body": "<Use the binary value of the blank.jpeg file>",
-        "query_string": "key=-_.~ !@#$%^*()+{}|:\"'`<>?&∞=v&キ=v&0=v&a=v&a=b&a=c&a=a&k=&k=v"
+        "request_url": "https://example.org/v1/pictures?key=-_.~ !@#$%^*()+{}|:\"'`<>?&∞=v&キ=v&0=v&a=v&a=b&a=c&a=a&k=&k=v",
+        "body": "<Use the binary value of the blank.jpeg file>"
     },
     "signatures": {
         "v1": "hDKYDRnzPFL2gzsru4zn7c7E7KpEvexeF4F5IR+puDxYXrMmuT2/fETZty5NkGGTZQ1nI6BTYGQGsU/73TkEAm7SvbJZcB2duLSCn8H5D0S1cafory1gnL1TpMPBlY8J/lq/Mht2E17eYw+P87FcpvDShINzy8GxWHqfquBqO8ml4XtirVEtAlI0xlkAsKkVq4nj7rKZUMS85mzogjUAJn3WgpGCNXVU+EK+qElW5QXk3I9uozByZhwBcYt5Cnlg15o99+53wKzMMmdvFmVjA1DeUaSO7LMIuw4ZNLVdDcHJx7ZSpAKZ/EA34u1fYNECFcw5CSKOjdlU7JFr4o8Phw==",

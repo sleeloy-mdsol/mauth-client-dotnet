@@ -59,8 +59,7 @@ namespace Medidata.MAuth.Tests
         private HttpRequestMessage CreateRequest(dynamic testData, MAuthVersion version = MAuthVersion.MWS,
             bool emptyBody = false)
         {
-            var requestUri = testData["attributes_for_signing"]["request_url"].ToString() +
-                             "?"+ testData["attributes_for_signing"]["query_string"].ToString();
+            var requestUri = testData["attributes_for_signing"]["request_url"].ToString();
             var request = new HttpRequestMessage(new HttpMethod(
                 testData["attributes_for_signing"]["verb"].ToString()), new Uri(requestUri))
             {
