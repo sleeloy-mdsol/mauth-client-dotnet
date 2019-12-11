@@ -49,17 +49,6 @@
     <ProjectReference Include="..\..\src\Medidata.MAuth.Core\Medidata.MAuth.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
-    <ProjectReference Include="..\..\src\Medidata.MAuth.Owin\Medidata.MAuth.Owin.csproj" />
-    <ProjectReference Include="..\..\src\Medidata.MAuth.WebApi\Medidata.MAuth.WebApi.csproj" />
-    <PackageReference Include="Microsoft.Owin.Hosting" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Testing" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.1.0" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-    <Compile Remove="MAuthAspNetCoreTests.cs" />
-  </ItemGroup>
-
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
     <ProjectReference Include="..\..\src\Medidata.MAuth.AspNetCore\Medidata.MAuth.AspNetCore.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="1.1.2" />
