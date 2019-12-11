@@ -6,6 +6,8 @@ dotnet: 2.2.207
 install:
   - dotnet tool install --global dotnet-sonarscanner --version 4.8.0
   - dotnet tool install --global coverlet.console
+before_script:
+  - export PATH=$PATH:/home/travis/.dotnet/tools
 script:
   - dotnet restore --source "https://api.nuget.org/v3/index.json" --source $MEDIDATA_NUGET_SOURCE --verbosity m
   - dotnet build tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj --verbosity m
