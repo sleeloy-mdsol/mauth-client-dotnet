@@ -9,7 +9,6 @@
     <AssemblyName>Medidata.MAuth.Tests</AssemblyName>
     <PackageId>Medidata.MAuth.Tests</PackageId>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
