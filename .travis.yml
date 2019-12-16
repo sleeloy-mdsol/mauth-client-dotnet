@@ -12,6 +12,6 @@ script:
   - dotnet restore --source "https://api.nuget.org/v3/index.json" --source $MEDIDATA_NUGET_SOURCE --verbosity m
   - dotnet add tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj package coverlet.msbuild
   - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj --verbosity m
-  - dotnet-sonarscanner begin /k:"sleeloy-mdsol_mauth-client-dotnet" /d:sonar.login="81ea9efa7a125f59e7194d75945f8b512857f82a" /d:sonar.host.url="https://sonarcloud.io/" /d:sonar.cs.opencover.reportsPaths="$TRAVIS_BUILD_DIR/tests/Medidata.MAuth.Tests/coverage.opencover.xml"
+  - dotnet-sonarscanner begin /k:"sleeloy-mdsol_mauth-client-dotnet" /d:sonar.login="81ea9efa7a125f59e7194d75945f8b512857f82a" /d:sonar.host.url="https://sonarcloud.io/" /d:sonar.organization="sleeloy-mdsol" /d:sonar.cs.opencover.reportsPaths="$TRAVIS_BUILD_DIR/tests/Medidata.MAuth.Tests/coverage.opencover.xml"
   - dotnet build
   - dotnet-sonarscanner end /d:sonar.login="81ea9efa7a125f59e7194d75945f8b512857f82a"
