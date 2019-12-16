@@ -8,10 +8,15 @@ addons:
     organization: "sleeloy-mdsol"
     token:
       secure: "BTdyM3dAGsB1WMMVr/cI1P673DSdTM9s9YeuETZFWvQqFrCUOC2Z4QdHWPwRrvL4xPT9az+vdJgTcjAysiZaN2nc3Y0n+zhoYd6h2DEuHIdAKVFGGX+J7xnQjDSQS+eI8qqAvpU3veu5dJxLFvvj7MPb9B081xRO+zZDtxsD64XzsTqLVP/CxkEZSsX7wjfLBIM+SUbP0xWMSgBc6WjxsBmvJuDID/2M7wQXVHXA9ACV8uZePGEhX4Hh/j/BqZKAtLKsx5XHYU0ED2oDUuuECZQt8Tip3J0nyQd/JQuZhXq9DW6SxVgg9ub4aPjcWe5nLGrV1EvLeEnDhxqcUIThCDfvh8p1+ji5ccnhJAsU5131F3RNCQpzpXEfB0eApPAJmBRrxjvfh0nQoITcCdroarWuay3UTYk1zRSEvJqBUaNVcHRug12jngxT8iYFR9MknsqTcedZY3VDU8Jys9c7mLuf0RsFTw/8ALLLHO5+HLmQMFytjPUJ/0nDUhX/2uvSyaGc+1/4YA6D/Uzftw8upCl1insJvYriVHcmUrLQylPH3sB3djyiL+Jh9xX1yTAskNarsiBYJ3OrFK2ZfvitO/JZuHTWT7z4JkQ1A+NNbJtBiWSAjWk9f9jeJ5B9wxwbfSB3JYH1PecWqrICS57oJTF5F7XYdTqjV4zO6+wmfUw=" # encrypted value of your token
+install:
+  - dotnet tool install --global dotnet-sonarscanner --version 4.8.0
+before_script:
+  - export PATH=$PATH:/home/travis/.dotnet/tools
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - dotnet restore --source "https://api.nuget.org/v3/index.json" --source $MEDIDATA_NUGET_SOURCE --verbosity m
   - dotnet add tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj package coverlet.msbuild
   - dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover tests/Medidata.MAuth.Tests/Medidata.MAuth.Tests.csproj --verbosity m
+  - dotnet-sonarscanner begin /k:"sleeloy-mdsol_mauth-client-dotnet" /d:sonar.login="BTdyM3dAGsB1WMMVr/cI1P673DSdTM9s9YeuETZFWvQqFrCUOC2Z4QdHWPwRrvL4xPT9az+vdJgTcjAysiZaN2nc3Y0n+zhoYd6h2DEuHIdAKVFGGX+J7xnQjDSQS+eI8qqAvpU3veu5dJxLFvvj7MPb9B081xRO+zZDtxsD64XzsTqLVP/CxkEZSsX7wjfLBIM+SUbP0xWMSgBc6WjxsBmvJuDID/2M7wQXVHXA9ACV8uZePGEhX4Hh/j/BqZKAtLKsx5XHYU0ED2oDUuuECZQt8Tip3J0nyQd/JQuZhXq9DW6SxVgg9ub4aPjcWe5nLGrV1EvLeEnDhxqcUIThCDfvh8p1+ji5ccnhJAsU5131F3RNCQpzpXEfB0eApPAJmBRrxjvfh0nQoITcCdroarWuay3UTYk1zRSEvJqBUaNVcHRug12jngxT8iYFR9MknsqTcedZY3VDU8Jys9c7mLuf0RsFTw/8ALLLHO5+HLmQMFytjPUJ/0nDUhX/2uvSyaGc+1/4YA6D/Uzftw8upCl1insJvYriVHcmUrLQylPH3sB3djyiL+Jh9xX1yTAskNarsiBYJ3OrFK2ZfvitO/JZuHTWT7z4JkQ1A+NNbJtBiWSAjWk9f9jeJ5B9wxwbfSB3JYH1PecWqrICS57oJTF5F7XYdTqjV4zO6+wmfUw=" /d:sonar.host.url="https://sonarcloud.io/" /d:sonar.cs.opencover.reportsPaths="$TRAVIS_BUILD_DIR/tests/Medidata.MAuth.Tests/coverage.opencover.xml"
   - dotnet build
-  - sonar-scanner
+  - dotnet-sonarscanner end /d:sonar.login="BTdyM3dAGsB1WMMVr/cI1P673DSdTM9s9YeuETZFWvQqFrCUOC2Z4QdHWPwRrvL4xPT9az+vdJgTcjAysiZaN2nc3Y0n+zhoYd6h2DEuHIdAKVFGGX+J7xnQjDSQS+eI8qqAvpU3veu5dJxLFvvj7MPb9B081xRO+zZDtxsD64XzsTqLVP/CxkEZSsX7wjfLBIM+SUbP0xWMSgBc6WjxsBmvJuDID/2M7wQXVHXA9ACV8uZePGEhX4Hh/j/BqZKAtLKsx5XHYU0ED2oDUuuECZQt8Tip3J0nyQd/JQuZhXq9DW6SxVgg9ub4aPjcWe5nLGrV1EvLeEnDhxqcUIThCDfvh8p1+ji5ccnhJAsU5131F3RNCQpzpXEfB0eApPAJmBRrxjvfh0nQoITcCdroarWuay3UTYk1zRSEvJqBUaNVcHRug12jngxT8iYFR9MknsqTcedZY3VDU8Jys9c7mLuf0RsFTw/8ALLLHO5+HLmQMFytjPUJ/0nDUhX/2uvSyaGc+1/4YA6D/Uzftw8upCl1insJvYriVHcmUrLQylPH3sB3djyiL+Jh9xX1yTAskNarsiBYJ3OrFK2ZfvitO/JZuHTWT7z4JkQ1A+NNbJtBiWSAjWk9f9jeJ5B9wxwbfSB3JYH1PecWqrICS57oJTF5F7XYdTqjV4zO6+wmfUw="
